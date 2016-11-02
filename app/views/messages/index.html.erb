@@ -1,1 +1,16 @@
-hello
+<ul class="list-group">
+	<% @room.messages.each do |m| %>
+  <li class="list-group-item">
+  	<%= m.username + ': ' + m.content %>
+  </li>
+  <% end %>
+</ul>
+
+<%= form_for [@room, Message.new] do |f| %>
+	<%= f.hidden_field :room_id, :value => @room.id %>
+	<%= f.label :username %>
+	<%= f.text_field :username %>
+	<%= f.label :content %>
+	<%= f.text_field :content %>
+	<%= f.submit 'Add message' %>
+<% end %>
