@@ -1,2 +1,14 @@
 <h1>Welcome</h1>
 <p>This is a basic chat app</p>
+<ul class="list-group">
+<% @rooms.each do |r| %>
+  <li class="list-group-item">
+  <%= link_to r.name, room_path(id: r.id) %>
+  </li>
+  <% end %>
+</ul>
+
+<%= form_tag rooms_path do %>
+ <%= text_field_tag :name, nil, placeholder: 'Room name' %>
+ <%= submit_tag "Create Room" %>
+  <% end %>
